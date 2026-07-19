@@ -13110,13 +13110,13 @@
       "type": null
     },
     {
-      "id": "circ:it-opus-dei",
+      "id": "circ:int-opus-dei",
       "litcal_id": "opudei_it",
-      "name": "Diocesi di Lanusei",
-      "nation": "IT",
+      "name": "Prelatura personale della Santa Croce e Opus Dei",
+      "nation": null,
       "church_sui_iuris": "latin",
-      "type": null,
-      "note": "The source index labels this row 'Diocesi di Lanusei', but the key indicates the personal prelature of Opus Dei; name pending correction upstream."
+      "type": "personal_prelature",
+      "note": "Supranational personal prelature: reserved segment `int` instead of a country code (schema proposal, rule 5). The source index lists it under Italy and mislabels it 'Diocesi di Lanusei'; fix submitted upstream (LiturgicalCalendarAPI PR #718)."
     },
     {
       "id": "circ:it-ordinariato-militare-per-l-italia",

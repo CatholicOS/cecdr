@@ -17,15 +17,25 @@ import unicodedata
 from pathlib import Path
 
 # Rows resolved manually, keyed by the API's diocese_id: homonymous sees the
-# source index cannot disambiguate (no province field) and one mislabeled row.
+# source index cannot disambiguate (no province field), and the personal
+# prelature of Opus Dei, which is supranational (reserved segment `int`, no
+# nation) and mislabeled in the source index (fix submitted upstream:
+# Liturgical-Calendar/LiturgicalCalendarAPI#718).
 MANUAL = {
-    "xinjia_cn": ("xinjiang-1", "Two homonymous circumscriptions in the source "
-                  "index; qualifier pending committee review."),
-    "xinjin_cn": ("xinjiang-2", "Two homonymous circumscriptions in the source "
-                  "index; qualifier pending committee review."),
-    "opudei_it": ("opus-dei", "The source index labels this row 'Diocesi di "
-                  "Lanusei', but the key indicates the personal prelature of "
-                  "Opus Dei; name pending correction upstream."),
+    "xinjia_cn": {"slug": "xinjiang-1",
+                  "note": "Two homonymous circumscriptions in the source "
+                          "index; qualifier pending committee review."},
+    "xinjin_cn": {"slug": "xinjiang-2",
+                  "note": "Two homonymous circumscriptions in the source "
+                          "index; qualifier pending committee review."},
+    "opudei_it": {"slug": "opus-dei", "iso": "int", "nation": None,
+                  "name": "Prelatura personale della Santa Croce e Opus Dei",
+                  "type": "personal_prelature",
+                  "note": "Supranational personal prelature: reserved segment "
+                          "`int` instead of a country code (schema proposal, "
+                          "rule 5). The source index lists it under Italy and "
+                          "mislabels it 'Diocesi di Lanusei'; fix submitted "
+                          "upstream (LiturgicalCalendarAPI PR #718)."},
 }
 
 
@@ -49,32 +59,30 @@ def main():
         iso = country["country_iso"].lower()
         rows = []
         for dio in country["dioceses"]:
-            litcal_id = dio["diocese_id"]
-            if litcal_id in MANUAL:
-                slug, note = MANUAL[litcal_id]
-            else:
-                slug, note = slugify(dio["diocese_name"]), None
-            rows.append((slug, note, dio))
+            over = MANUAL.get(dio["diocese_id"], {})
+            slug = over.get("slug") or slugify(dio["diocese_name"])
+            rows.append((slug, over, dio))
         # Same-country homonyms: qualify with the province where the source
         # provides one (matching official usage, e.g. portland-in-oregon).
         counts = {}
         for slug, _, _ in rows:
             counts[slug] = counts.get(slug, 0) + 1
-        for slug, note, dio in rows:
+        for slug, over, dio in rows:
             if counts[slug] > 1 and dio.get("province"):
                 slug = f"{slug}-in-{slugify(dio['province'])}"
+            seg = over.get("iso", iso)
             entry = {
-                "id": f"circ:{iso}-{slug}",
+                "id": f"circ:{seg}-{slug}",
                 "litcal_id": dio["diocese_id"],
-                "name": dio["diocese_name"],
-                "nation": iso.upper(),
+                "name": over.get("name", dio["diocese_name"]),
+                "nation": over["nation"] if "nation" in over else iso.upper(),
                 "church_sui_iuris": "latin",
-                "type": None,
+                "type": over.get("type"),
             }
             if dio.get("province"):
                 entry["province"] = dio["province"]
-            if note:
-                entry["note"] = note
+            if over.get("note"):
+                entry["note"] = over["note"]
             entries.append(entry)
     ids = [e["id"] for e in entries]
     dupes = {i for i in ids if ids.count(i) > 1}

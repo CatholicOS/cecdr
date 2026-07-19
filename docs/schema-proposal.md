@@ -34,11 +34,12 @@ circ:<iso3166-1-alpha2>-<slug>
    qualified by the church: `circ:us-philadelphia` (Latin),
    `circ:us-philadelphia-ukrainian` (archeparchy).
 5. **Supranational and extraterritorial structures** (e.g. personal prelatures,
-   ordinariates for Eastern faithful covering several nations) use a reserved first
-   segment in place of the country code — proposal: `circ:va-<slug>` is *not* used for
-   this (the Holy See is a real territory); instead a non-ISO reserved token `xx` or
-   `int` is proposed, e.g. `circ:int-opus-dei`. **Open question** for the committee.
-   Military ordinariates are national by nature: `circ:it-ordinariato-militare`.
+   ordinariates for Eastern faithful covering several nations) use the reserved
+   first segment `int` in place of a country code: `circ:int-opus-dei`. `int` is not
+   an ISO 3166-1 alpha-2 code, so no collision is possible; `circ:va-<slug>` is *not*
+   used for this (the Holy See is a real territory). The token choice remains open for
+   committee confirmation. Military ordinariates are national by nature:
+   `circ:it-ordinariato-militare`.
 
 ## Entry shape
 
@@ -75,9 +76,11 @@ enrichment:
   (Annuario Pontificio).
 - Two homonymous Chinese sees (`circ:cn-xinjiang-1/-2`) carry ordinal qualifiers
   pending proper disambiguation.
-- One source row is mislabeled (`opudei_it` as "Diocesi di Lanusei"); recorded as
-  `circ:it-opus-dei` with a note, pending correction upstream in the Liturgical
-  Calendar API.
+- The personal prelature of Opus Dei is supranational and therefore seeded as
+  `circ:int-opus-dei` (rule 5) with no `nation`, even though the source index lists it
+  under Italy; the source also mislabels the row "Diocesi di Lanusei" — a fix has been
+  submitted upstream
+  ([LiturgicalCalendarAPI PR #718](https://github.com/Liturgical-Calendar/LiturgicalCalendarAPI/pull/718)).
 
 ## Open questions for the committee
 
