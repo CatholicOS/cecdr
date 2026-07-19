@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""Generate the CECDR seed registry from the Liturgical Calendar API's world
+dioceses index (jsondata/world_dioceses.json, Apache-2.0).
+
+The seed covers the Latin-rite circumscriptions known to the API; Eastern
+eparchies and the other circumscription types are to be added from further
+sources (see docs/schema-proposal.md).
+
+Usage:
+  python3 generate_seed.py /path/to/LiturgicalCalendarAPI/jsondata/world_dioceses.json [repo_root]
+"""
+
+import json
+import re
+import sys
+import unicodedata
+from pathlib import Path
+
+# Rows resolved manually, keyed by the API's diocese_id: homonymous sees the
+# source index cannot disambiguate (no province field) and one mislabeled row.
+MANUAL = {
+    "xinjia_cn": ("xinjiang-1", "Two homonymous circumscriptions in the source "
+                  "index; qualifier pending committee review."),
+    "xinjin_cn": ("xinjiang-2", "Two homonymous circumscriptions in the source "
+                  "index; qualifier pending committee review."),
+    "opudei_it": ("opus-dei", "The source index labels this row 'Diocesi di "
+                  "Lanusei', but the key indicates the personal prelature of "
+                  "Opus Dei; name pending correction upstream."),
+}
+
+
+def slugify(name):
+    s = unicodedata.normalize("NFKD", name)
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
+    s = s.lower()
+    # strip generic type prefixes so the slug is the see name
+    s = re.sub(r"^(arch)?diocesi di |^(arch)?diocese of ", "", s)
+    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return s
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(__doc__)
+    src = json.load(open(sys.argv[1], encoding="utf-8"))
+    repo_root = Path(sys.argv[2]) if len(sys.argv) > 2 else Path(__file__).resolve().parent.parent
+    entries = []
+    for country in src["catholic_dioceses_latin_rite"]:
+        iso = country["country_iso"].lower()
+        rows = []
+        for dio in country["dioceses"]:
+            litcal_id = dio["diocese_id"]
+            if litcal_id in MANUAL:
+                slug, note = MANUAL[litcal_id]
+            else:
+                slug, note = slugify(dio["diocese_name"]), None
+            rows.append((slug, note, dio))
+        # Same-country homonyms: qualify with the province where the source
+        # provides one (matching official usage, e.g. portland-in-oregon).
+        counts = {}
+        for slug, _, _ in rows:
+            counts[slug] = counts.get(slug, 0) + 1
+        for slug, note, dio in rows:
+            if counts[slug] > 1 and dio.get("province"):
+                slug = f"{slug}-in-{slugify(dio['province'])}"
+            entry = {
+                "id": f"circ:{iso}-{slug}",
+                "litcal_id": dio["diocese_id"],
+                "name": dio["diocese_name"],
+                "nation": iso.upper(),
+                "church_sui_iuris": "latin",
+                "type": None,
+            }
+            if dio.get("province"):
+                entry["province"] = dio["province"]
+            if note:
+                entry["note"] = note
+            entries.append(entry)
+    ids = [e["id"] for e in entries]
+    dupes = {i for i in ids if ids.count(i) > 1}
+    assert not dupes, f"duplicate ids: {sorted(dupes)[:10]}"
+    out = {
+        "$comment": "CECDR seed registry: draft canonical IDs for Catholic "
+                    "ecclesiastical circumscriptions, generated from the "
+                    "Liturgical Calendar API's Latin-rite world dioceses index. "
+                    "All IDs are drafts pending committee review; `type` is "
+                    "null pending enrichment (see docs/schema-proposal.md).",
+        "id_scheme": "circ:<iso3166-1-alpha2>-<slug>",
+        "entry_count": len(entries),
+        "entries": entries,
+    }
+    path = repo_root / "data" / "circumscriptions.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print(f"Wrote {len(entries)} circumscriptions to {path}")
+
+
+if __name__ == "__main__":
+    main()
