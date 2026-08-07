@@ -51,15 +51,38 @@ circ:<iso3166-1-alpha2>-<slug>
   "nation": "US",
   "province": "Massachusetts",
   "church_sui_iuris": "latin",
-  "type": "archdiocese"
+  "type": "ctype:archdiocese"
 }
 ```
 
-Planned attributes beyond the seed: `type` (diocese, archdiocese, eparchy,
-archeparchy, exarchate, territorial_prelature, territorial_abbacy,
-apostolic_vicariate, apostolic_prefecture, apostolic_administration,
-military_ordinariate, personal_ordinariate, personal_prelature, mission_sui_iuris),
-`metropolitan` (the ID of the metropolitan see), `status`
+## Circumscription types
+
+`type` is not a free string but a cross-reference into a companion registry,
+`data/circumscription_types.json`, which mints a canonical ID for each canonical
+rank or juridic form a circumscription can hold:
+
+```
+ctype:<slug>
+```
+
+`ctype:diocese`, `ctype:archeparchy`, `ctype:territorial-abbacy`,
+`ctype:apostolic-vicariate`, `ctype:military-ordinariate`,
+`ctype:personal-prelature`, and so on — 16 in all. Each entry carries the Latin
+name (`name_la`, the Annuario's own nomenclature), the church to which the form
+belongs (`latin`, `eastern`, `both`), whether it is territorial, the title of the
+one who governs it, and the governing canon or document.
+
+This follows the cross-registry convention already used in the family: COECDR
+embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs. An entry therefore
+reads `"type": "ctype:diocese"`, and `scripts/generate_seed.py` asserts that
+every `type` resolves against the types registry.
+
+The `ctype:` prefix is a placeholder on the same footing as `circ:`, pending the
+namespace coordination in open question 1.
+
+## Further attributes
+
+Planned beyond the seed: `metropolitan` (the ID of the metropolitan see), `status`
 (active | suppressed | merged_into:<id>), `historical_names`, `erected` (date of
 erection), and external keys (`litcal_id` now; potentially GCatholic and
 Catholic-Hierarchy keys as cross-references).
@@ -93,4 +116,14 @@ enrichment:
    official names (the seed currently carries the API's names, which mix both).
 5. Whether Ordinariates for Eastern-rite faithful without their own hierarchy, and
    pastoral structures like apostolic exarchates in the diaspora, need a dedicated
-   type taxonomy beyond the Annuario's.
+   type taxonomy beyond the Annuario's. Both are provisionally minted in
+   `data/circumscription_types.json` (`ctype:ordinariate-for-eastern-faithful`,
+   `ctype:apostolic-exarchate`) so the question can be decided against concrete
+   entries rather than in the abstract.
+6. Whether type IDs should be English (`ctype:territorial-abbacy`, as minted) or
+   Latin (`ctype:abbatia-territorialis`), following CDOCTDR's use of the Latin
+   lemma. The Latin name is carried as `name_la` either way, so this is a question
+   about the identifier alone.
+7. Whether patriarchal and major archiepiscopal sees warrant their own type IDs.
+   They are presently archeparchies, with the dignity of the church *sui iuris*
+   carried by `church_sui_iuris`; the Annuario lists them distinctly.
