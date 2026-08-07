@@ -1,5 +1,5 @@
 {
-  "$comment": "CECDR circumscription types: draft canonical IDs for the canonical ranks and juridic forms an ecclesiastical circumscription can take. Referenced from data/circumscriptions.json as the value of each entry's `type` field, following the cross-registry convention used elsewhere in the CDCF family (COECDR embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs). All IDs are drafts pending committee review; the `ctype:` prefix is a placeholder pending the namespace coordination in open question 1 of docs/schema-proposal.md.",
+  "$comment": "CECDR circumscription types: draft canonical IDs for the canonical ranks and juridic forms an ecclesiastical circumscription can take. Referenced from data/circumscriptions.json as the value of each entry's `type` field, following the cross-registry convention used elsewhere in the CDCF family (COECDR embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs). All IDs are drafts pending committee review; the `ctype:` prefix is a placeholder pending the namespace coordination in open question 1 of docs/schema-proposal.md. The `church` field records which churches are known to use each form and is provisional: it can only be established by enumerating actual circumscriptions, and the seed is still Latin-rite only, so a form marked `latin` here may prove to be `both` once Eastern circumscriptions are added. `ctype:territorial-abbacy` was corrected from `latin` to `both` on exactly this ground (Grottaferrata). See open question 8 in docs/schema-proposal.md.",
   "id_scheme": "ctype:<slug>",
   "entry_count": 16,
   "entries": [
@@ -77,11 +77,11 @@
       "id": "ctype:territorial-abbacy",
       "name_en": "territorial abbacy",
       "name_la": "abbatia territorialis",
-      "church": "latin",
+      "church": "both",
       "territorial": true,
       "head": "abbot",
       "juridic_reference": "CIC can. 370",
-      "note": "Formerly styled abbatia nullius dioecesis. Its identity is bound to a monastery rather than to a civil city — see issue #3 on how this affects slug formation."
+      "note": "Formerly styled abbatia nullius dioecesis. Not a Latin-only form: the Abbazia territoriale di Santa Maria di Grottaferrata is of Byzantine rite and is one of the three circumscriptions of the Chiesa bizantina cattolica in Italia, alongside the eparchies of Lungro and Piana degli Albanesi. Its identity is bound to a monastery rather than to a civil city — see issue #3 on how this affects slug formation."
     },
     {
       "id": "ctype:apostolic-vicariate",

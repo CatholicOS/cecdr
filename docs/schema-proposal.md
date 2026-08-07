@@ -127,3 +127,13 @@ enrichment:
 7. Whether patriarchal and major archiepiscopal sees warrant their own type IDs.
    They are presently archeparchies, with the dignity of the church *sui iuris*
    carried by `church_sui_iuris`; the Annuario lists them distinctly.
+8. Verification of the `church` field in `data/circumscription_types.json`. It
+   records which churches are known to use each form, but that is an empirical
+   question answerable only by enumerating real circumscriptions — and the seed is
+   still Latin-rite only. `ctype:territorial-abbacy` was initially classified
+   `latin` and is in fact `both`: the Abbazia territoriale di Santa Maria di
+   Grottaferrata is Byzantine, one of the three circumscriptions of the Chiesa
+   bizantina cattolica in Italia. The forms still marked `latin` — territorial
+   prelature, apostolic vicariate, apostolic prefecture, mission *sui iuris*,
+   personal prelature — need the same check against the Annuario rather than
+   against expectation.
