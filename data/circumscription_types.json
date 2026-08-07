@@ -1,0 +1,167 @@
+{
+  "$comment": "CECDR circumscription types: draft canonical IDs for the canonical ranks and juridic forms an ecclesiastical circumscription can take. Referenced from data/circumscriptions.json as the value of each entry's `type` field, following the cross-registry convention used elsewhere in the CDCF family (COECDR embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs). All IDs are drafts pending committee review; the `ctype:` prefix is a placeholder pending the namespace coordination in open question 1 of docs/schema-proposal.md.",
+  "id_scheme": "ctype:<slug>",
+  "entry_count": 16,
+  "entries": [
+    {
+      "id": "ctype:diocese",
+      "name_en": "diocese",
+      "name_la": "dioecesis",
+      "church": "latin",
+      "territorial": true,
+      "head": "diocesan bishop",
+      "juridic_reference": "CIC can. 369",
+      "note": "The paradigm case of a particular Church (can. 368). Elevation to archdiocese does not change the circumscription's identity (schema proposal, rule 1)."
+    },
+    {
+      "id": "ctype:archdiocese",
+      "name_en": "archdiocese",
+      "name_la": "archidioecesis",
+      "church": "latin",
+      "territorial": true,
+      "head": "archbishop",
+      "juridic_reference": "CIC can. 435",
+      "note": "A diocese whose bishop holds archiepiscopal dignity, most often as metropolitan of an ecclesiastical province. Whether the see is metropolitan is carried by the planned `metropolitan` attribute, not by this type."
+    },
+    {
+      "id": "ctype:eparchy",
+      "name_en": "eparchy",
+      "name_la": "eparchia",
+      "church": "eastern",
+      "territorial": true,
+      "head": "eparchial bishop",
+      "juridic_reference": "CCEO can. 177",
+      "note": "The Eastern equivalent of a diocese."
+    },
+    {
+      "id": "ctype:archeparchy",
+      "name_en": "archeparchy",
+      "name_la": "archieparchia",
+      "church": "eastern",
+      "territorial": true,
+      "head": "archeparch",
+      "juridic_reference": "CCEO can. 177",
+      "note": "An eparchy whose bishop holds archiepiscopal dignity. Patriarchal and major archiepiscopal sees are archeparchies; the dignity of the church sui iuris is carried by `church_sui_iuris`, not by this type — see open questions below."
+    },
+    {
+      "id": "ctype:exarchate",
+      "name_en": "exarchate",
+      "name_la": "exarchatus",
+      "church": "eastern",
+      "territorial": true,
+      "head": "exarch",
+      "juridic_reference": "CCEO can. 311",
+      "note": "A portion of the faithful not yet erected as an eparchy, entrusted to an exarch."
+    },
+    {
+      "id": "ctype:apostolic-exarchate",
+      "name_en": "apostolic exarchate",
+      "name_la": "exarchatus apostolicus",
+      "church": "eastern",
+      "territorial": true,
+      "head": "apostolic exarch",
+      "juridic_reference": "CCEO can. 311-321",
+      "note": "An exarchate erected by the Holy See outside the territory of the church sui iuris, typical of the diaspora. Subject of open question 5 in docs/schema-proposal.md."
+    },
+    {
+      "id": "ctype:territorial-prelature",
+      "name_en": "territorial prelature",
+      "name_la": "praelatura territorialis",
+      "church": "latin",
+      "territorial": true,
+      "head": "prelate",
+      "juridic_reference": "CIC can. 370",
+      "note": "Formerly styled praelatura nullius dioecesis. Assimilated to a diocese in law (can. 368)."
+    },
+    {
+      "id": "ctype:territorial-abbacy",
+      "name_en": "territorial abbacy",
+      "name_la": "abbatia territorialis",
+      "church": "latin",
+      "territorial": true,
+      "head": "abbot",
+      "juridic_reference": "CIC can. 370",
+      "note": "Formerly styled abbatia nullius dioecesis. Its identity is bound to a monastery rather than to a civil city — see issue #3 on how this affects slug formation."
+    },
+    {
+      "id": "ctype:apostolic-vicariate",
+      "name_en": "apostolic vicariate",
+      "name_la": "vicariatus apostolicus",
+      "church": "latin",
+      "territorial": true,
+      "head": "vicar apostolic",
+      "juridic_reference": "CIC can. 371 §1",
+      "note": "A missionary circumscription not yet erected as a diocese, governed in the name of the Roman Pontiff. Its vicar is ordinarily a titular bishop."
+    },
+    {
+      "id": "ctype:apostolic-prefecture",
+      "name_en": "apostolic prefecture",
+      "name_la": "praefectura apostolica",
+      "church": "latin",
+      "territorial": true,
+      "head": "prefect apostolic",
+      "juridic_reference": "CIC can. 371 §1",
+      "note": "A missionary circumscription at an earlier stage than an apostolic vicariate; its prefect is ordinarily not a bishop. Both Chinese circumscriptions in issue #6 hold this rank."
+    },
+    {
+      "id": "ctype:apostolic-administration",
+      "name_en": "apostolic administration",
+      "name_la": "administratio apostolica",
+      "church": "both",
+      "territorial": true,
+      "head": "apostolic administrator",
+      "juridic_reference": "CIC can. 371 §2",
+      "note": "Erected stably where grave and particular reasons prevent the erection of a diocese. Distinct from the temporary administration of a vacant see, which is a state of a circumscription rather than a type of one."
+    },
+    {
+      "id": "ctype:mission-sui-iuris",
+      "name_en": "mission sui iuris",
+      "name_la": "missio sui iuris",
+      "church": "latin",
+      "territorial": true,
+      "head": "ecclesiastical superior",
+      "juridic_reference": null,
+      "note": "The earliest stage of missionary organization, preceding an apostolic prefecture. Not defined in the 1983 Code; recognized in the Annuario Pontificio and in the practice of the Dicastery for Evangelization. `juridic_reference` is null pending an authoritative citation."
+    },
+    {
+      "id": "ctype:military-ordinariate",
+      "name_en": "military ordinariate",
+      "name_la": "ordinariatus militaris",
+      "church": "both",
+      "territorial": false,
+      "head": "military ordinary",
+      "juridic_reference": "Spirituali Militum Curae (1986)",
+      "note": "Assimilated to a diocese in law. Its territory is a body of armed forces rather than a place, which is why its identifier retains the type word (schema proposal, rule 5) — see issue #4."
+    },
+    {
+      "id": "ctype:personal-ordinariate",
+      "name_en": "personal ordinariate",
+      "name_la": "ordinariatus personalis",
+      "church": "latin",
+      "territorial": false,
+      "head": "ordinary",
+      "juridic_reference": "Anglicanorum coetibus (2009)",
+      "note": "Erected for groups of former Anglicans in full communion, retaining elements of Anglican patrimony. Three exist; two of the three are supranational — see issue #5."
+    },
+    {
+      "id": "ctype:personal-prelature",
+      "name_en": "personal prelature",
+      "name_la": "praelatura personalis",
+      "church": "latin",
+      "territorial": false,
+      "head": "prelate",
+      "juridic_reference": "CIC can. 294-297",
+      "note": "Erected to promote a particular pastoral work among a defined body of faithful. Opus Dei is presently the only one."
+    },
+    {
+      "id": "ctype:ordinariate-for-eastern-faithful",
+      "name_en": "ordinariate for the faithful of Eastern rites",
+      "name_la": "ordinariatus pro fidelibus ritus orientalis",
+      "church": "eastern",
+      "territorial": false,
+      "head": "ordinary",
+      "juridic_reference": null,
+      "note": "For Eastern faithful in a territory where their church sui iuris has no hierarchy of its own; ordinarily entrusted to the local Latin bishop. Subject of open question 5 in docs/schema-proposal.md. `juridic_reference` is null pending an authoritative citation."
+    }
+  ]
+}

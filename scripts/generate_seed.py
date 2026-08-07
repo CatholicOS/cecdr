@@ -30,7 +30,7 @@ MANUAL = {
                           "index; qualifier pending committee review."},
     "opudei_it": {"slug": "opus-dei", "iso": "int", "nation": None,
                   "name": "Prelatura personale della Santa Croce e Opus Dei",
-                  "type": "personal_prelature",
+                  "type": "ctype:personal-prelature",
                   "note": "Supranational personal prelature: reserved segment "
                           "`int` instead of a country code (schema proposal, "
                           "rule 5). The source index lists it under Italy and "
@@ -91,6 +91,12 @@ def main():
     ids = [e["id"] for e in entries]
     dupes = {i for i in ids if ids.count(i) > 1}
     assert not dupes, f"duplicate ids: {sorted(dupes)[:10]}"
+    # Every `type` is a cross-reference into data/circumscription_types.json;
+    # a typo there would silently produce an unresolvable reference.
+    types_path = repo_root / "data" / "circumscription_types.json"
+    known = {t["id"] for t in json.load(open(types_path, encoding="utf-8"))["entries"]}
+    unknown = {e["type"] for e in entries if e["type"] and e["type"] not in known}
+    assert not unknown, f"unknown circumscription types: {sorted(unknown)}"
     out = {
         "$comment": "CECDR seed registry: draft canonical IDs for Catholic "
                     "ecclesiastical circumscriptions, generated from the "

@@ -13115,7 +13115,7 @@
       "name": "Prelatura personale della Santa Croce e Opus Dei",
       "nation": null,
       "church_sui_iuris": "latin",
-      "type": "personal_prelature",
+      "type": "ctype:personal-prelature",
       "note": "Supranational personal prelature: reserved segment `int` instead of a country code (schema proposal, rule 5). The source index lists it under Italy and mislabels it 'Diocesi di Lanusei'; fix submitted upstream (LiturgicalCalendarAPI PR #718)."
     },
     {
