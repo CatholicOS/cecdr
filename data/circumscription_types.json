@@ -1,5 +1,5 @@
 {
-  "$comment": "CECDR circumscription types: draft canonical IDs for the canonical ranks and juridic forms an ecclesiastical circumscription can take. Referenced from data/circumscriptions.json as the value of each entry's `type` field, following the cross-registry convention used elsewhere in the CDCF family (COECDR embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs). All IDs are drafts pending committee review; the `ctype:` prefix is a placeholder pending the namespace coordination in open question 1 of docs/schema-proposal.md. The `church` field records which churches are known to use each form and is provisional: it can only be established by enumerating actual circumscriptions, and the seed is still Latin-rite only, so a form marked `latin` here may prove to be `both` once Eastern circumscriptions are added. `ctype:territorial-abbacy` was corrected from `latin` to `both` on exactly this ground (Grottaferrata). See open question 8 in docs/schema-proposal.md.",
+  "$comment": "CECDR circumscription types: draft canonical IDs for the canonical ranks and juridic forms an ecclesiastical circumscription can take. Referenced from data/circumscriptions.json as the value of each entry's `type` field, following the cross-registry convention used elsewhere in the CDCF family (COECDR embeds CRPDR `rp:` IDs, CDOCTDR embeds CRMEDR `mr:` IDs). All IDs are drafts pending committee review; the `ctype:` prefix is a placeholder pending the namespace coordination in open question 1 of docs/schema-proposal.md. The `church` field records which churches are known to use each form and is provisional: it can only be established by enumerating actual circumscriptions, and the seed is still Latin-rite only, so a form marked `latin` here may prove to be `both` once Eastern circumscriptions are added. Two forms have been corrected from `latin` to `both` on exactly this ground: `ctype:territorial-abbacy` (Grottaferrata) and `ctype:apostolic-vicariate` (the Bulgarian Byzantine vicariates suppressed in 1926, which rule 3 keeps referenceable). The values still marked `latin` were checked against Catholic-Hierarchy and per-form surveys — verification aids, not authorities — and not against the Annuario Pontificio, which has not been consulted. See open question 8 in docs/schema-proposal.md.",
   "id_scheme": "ctype:<slug>",
   "entry_count": 16,
   "entries": [
@@ -87,11 +87,11 @@
       "id": "ctype:apostolic-vicariate",
       "name_en": "apostolic vicariate",
       "name_la": "vicariatus apostolicus",
-      "church": "latin",
+      "church": "both",
       "territorial": true,
       "head": "vicar apostolic",
       "juridic_reference": "CIC can. 371 §1",
-      "note": "A missionary circumscription not yet erected as a diocese, governed in the name of the Roman Pontiff. Its vicar is ordinarily a titular bishop."
+      "note": "A missionary circumscription not yet erected as a diocese, governed in the name of the Roman Pontiff. Its vicar is ordinarily a titular bishop. The standing Eastern equivalent is the apostolic exarchate, and no Eastern apostolic vicariate is currently active — but the Bulgarian Greek Catholic Church had two, the Apostolic Vicariates of Macedonia (Thessaloniki) and of Thrace (Adrianople), both erected 1883 and suppressed 1926 into the Apostolic Exarchate of Sofia. Since suppressed circumscriptions keep their IDs and are never deleted (schema proposal, rule 3), this form must remain typable for a Byzantine circumscription."
     },
     {
       "id": "ctype:apostolic-prefecture",

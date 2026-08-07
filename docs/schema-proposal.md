@@ -127,13 +127,18 @@ enrichment:
 7. Whether patriarchal and major archiepiscopal sees warrant their own type IDs.
    They are presently archeparchies, with the dignity of the church *sui iuris*
    carried by `church_sui_iuris`; the Annuario lists them distinctly.
-8. Verification of the `church` field in `data/circumscription_types.json`. It
-   records which churches are known to use each form, but that is an empirical
-   question answerable only by enumerating real circumscriptions — and the seed is
-   still Latin-rite only. `ctype:territorial-abbacy` was initially classified
-   `latin` and is in fact `both`: the Abbazia territoriale di Santa Maria di
-   Grottaferrata is Byzantine, one of the three circumscriptions of the Chiesa
-   bizantina cattolica in Italia. The forms still marked `latin` — territorial
-   prelature, apostolic vicariate, apostolic prefecture, mission *sui iuris*,
-   personal prelature — need the same check against the Annuario rather than
-   against expectation.
+8. Confirmation of the `church` field in `data/circumscription_types.json` against
+   the **Annuario Pontificio itself**. The field records which churches are known
+   to use each form — an empirical question answerable only by enumerating real
+   circumscriptions, including suppressed ones, since rule 3 keeps those
+   referenceable forever. Two initial classifications have already been corrected
+   on evidence: `ctype:territorial-abbacy` (Grottaferrata, Byzantine, active) and
+   `ctype:apostolic-vicariate` (the Bulgarian Byzantine vicariates of Macedonia and
+   Thrace, 1883–1926). The remaining `latin` values were checked against
+   Catholic-Hierarchy's structured view of the Byzantine tradition and against
+   per-form surveys, which are verification aids and not authorities; no Eastern
+   instance was found for diocese, archdiocese, territorial prelature, apostolic
+   prefecture, mission *sui iuris*, personal prelature or personal ordinariate.
+   Absence of evidence is weaker than the two positives that forced a change,
+   particularly for suppressed Eastern circumscriptions, whose coverage in those
+   sources is uneven. The Annuario remains the authority and has not been consulted.
