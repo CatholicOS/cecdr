@@ -43,8 +43,12 @@ def slugify(name):
     s = unicodedata.normalize("NFKD", name)
     s = "".join(ch for ch in s if not unicodedata.combining(ch))
     s = s.lower()
-    # strip generic type prefixes so the slug is the see name
-    s = re.sub(r"^(arch)?diocesi di |^(arch)?diocese of ", "", s)
+    # strip generic type prefixes so the slug is the see name. The source uses
+    # four styled forms; Italian forms the archdiocese as "arcidiocesi", not
+    # "archdiocesi", so it needs its own alternative rather than an `(arch)?`
+    # prefix on the diocesan form.
+    s = re.sub(r"^(arci)?diocesi di ", "", s)
+    s = re.sub(r"^(arch)?diocese of ", "", s)
     s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
     return s
 

@@ -12054,7 +12054,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-acerenza",
+      "id": "circ:it-acerenza",
       "litcal_id": "aceren_it",
       "name": "Arcidiocesi di Acerenza",
       "nation": "IT",
@@ -12094,7 +12094,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-agrigento",
+      "id": "circ:it-agrigento",
       "litcal_id": "agrige_it",
       "name": "Arcidiocesi di Agrigento",
       "nation": "IT",
@@ -12166,7 +12166,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-amalfi-cava-de-tirreni",
+      "id": "circ:it-amalfi-cava-de-tirreni",
       "litcal_id": "amcadt_it",
       "name": "Arcidiocesi di Amalfi - Cava de' Tirreni",
       "nation": "IT",
@@ -12182,7 +12182,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-ancona-osimo",
+      "id": "circ:it-ancona-osimo",
       "litcal_id": "ancosi_it",
       "name": "Arcidiocesi di Ancona - Osimo",
       "nation": "IT",
@@ -12270,7 +12270,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-bari-bitonto",
+      "id": "circ:it-bari-bitonto",
       "litcal_id": "barbit_it",
       "name": "Arcidiocesi di Bari - Bitonto",
       "nation": "IT",
@@ -12286,7 +12286,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-benevento",
+      "id": "circ:it-benevento",
       "litcal_id": "beneve_it",
       "name": "Arcidiocesi di Benevento",
       "nation": "IT",
@@ -12310,7 +12310,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-bologna",
+      "id": "circ:it-bologna",
       "litcal_id": "bologn_it",
       "name": "Arcidiocesi di Bologna",
       "nation": "IT",
@@ -12334,7 +12334,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-brindisi-ostuni",
+      "id": "circ:it-brindisi-ostuni",
       "litcal_id": "briost_it",
       "name": "Arcidiocesi di Brindisi - Ostuni",
       "nation": "IT",
@@ -12342,7 +12342,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-cagliari",
+      "id": "circ:it-cagliari",
       "litcal_id": "caglia_it",
       "name": "Arcidiocesi di Cagliari",
       "nation": "IT",
@@ -12366,7 +12366,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-camerino-san-severino-marche",
+      "id": "circ:it-camerino-san-severino-marche",
       "litcal_id": "casasm_it",
       "name": "Arcidiocesi di Camerino - San Severino Marche",
       "nation": "IT",
@@ -12374,7 +12374,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-campobasso-boiano",
+      "id": "circ:it-campobasso-boiano",
       "litcal_id": "camboi_it",
       "name": "Arcidiocesi di Campobasso - Boiano",
       "nation": "IT",
@@ -12382,7 +12382,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-capua",
+      "id": "circ:it-capua",
       "litcal_id": "capuau_it",
       "name": "Arcidiocesi di Capua",
       "nation": "IT",
@@ -12430,7 +12430,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-catania",
+      "id": "circ:it-catania",
       "litcal_id": "catani_it",
       "name": "Arcidiocesi di Catania",
       "nation": "IT",
@@ -12438,7 +12438,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-catanzaro-squillace",
+      "id": "circ:it-catanzaro-squillace",
       "litcal_id": "catsqu_it",
       "name": "Arcidiocesi di Catanzaro - Squillace",
       "nation": "IT",
@@ -12486,7 +12486,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-chieti-vasto",
+      "id": "circ:it-chieti-vasto",
       "litcal_id": "chivas_it",
       "name": "Arcidiocesi di Chieti - Vasto",
       "nation": "IT",
@@ -12614,7 +12614,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-fermo",
+      "id": "circ:it-fermo",
       "litcal_id": "fermom_it",
       "name": "Arcidiocesi di Fermo",
       "nation": "IT",
@@ -12622,7 +12622,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-ferrara-comacchio",
+      "id": "circ:it-ferrara-comacchio",
       "litcal_id": "fercom_it",
       "name": "Arcidiocesi di Ferrara - Comacchio",
       "nation": "IT",
@@ -12646,7 +12646,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-firenze",
+      "id": "circ:it-firenze",
       "litcal_id": "firenz_it",
       "name": "Arcidiocesi di Firenze",
       "nation": "IT",
@@ -12654,7 +12654,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-foggia-bovino",
+      "id": "circ:it-foggia-bovino",
       "litcal_id": "fogbov_it",
       "name": "Arcidiocesi di Foggia - Bovino",
       "nation": "IT",
@@ -12694,7 +12694,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-gaeta",
+      "id": "circ:it-gaeta",
       "litcal_id": "gaetat_it",
       "name": "Arcidiocesi di Gaeta",
       "nation": "IT",
@@ -12702,7 +12702,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-genova",
+      "id": "circ:it-genova",
       "litcal_id": "genova_it",
       "name": "Arcidiocesi di Genova",
       "nation": "IT",
@@ -12710,7 +12710,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-gorizia",
+      "id": "circ:it-gorizia",
       "litcal_id": "gorizi_it",
       "name": "Arcidiocesi di Gorizia",
       "nation": "IT",
@@ -12782,7 +12782,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-l-aquila",
+      "id": "circ:it-l-aquila",
       "litcal_id": "laquil_it",
       "name": "Arcidiocesi di L'Aquila",
       "nation": "IT",
@@ -12806,7 +12806,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-lanciano-ortona",
+      "id": "circ:it-lanciano-ortona",
       "litcal_id": "lanort_it",
       "name": "Arcidiocesi di Lanciano - Ortona",
       "nation": "IT",
@@ -12830,7 +12830,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-lecce",
+      "id": "circ:it-lecce",
       "litcal_id": "leccec_it",
       "name": "Arcidiocesi di Lecce",
       "nation": "IT",
@@ -12870,7 +12870,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-lucca",
+      "id": "circ:it-lucca",
       "litcal_id": "luccac_it",
       "name": "Arcidiocesi di Lucca",
       "nation": "IT",
@@ -12894,7 +12894,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-manfredonia-vieste-san-giovanni-rotondo",
+      "id": "circ:it-manfredonia-vieste-san-giovanni-rotondo",
       "litcal_id": "mavsgr_it",
       "name": "Arcidiocesi di Manfredonia - Vieste - San Giovanni Rotondo",
       "nation": "IT",
@@ -12926,7 +12926,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-matera-irsina",
+      "id": "circ:it-matera-irsina",
       "litcal_id": "matirs_it",
       "name": "Arcidiocesi di Matera - Irsina",
       "nation": "IT",
@@ -12950,7 +12950,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-messina-lipari-santa-lucia-del-mela",
+      "id": "circ:it-messina-lipari-santa-lucia-del-mela",
       "litcal_id": "mlsldm_it",
       "name": "Arcidiocesi di Messina - Lipari - Santa Lucia del Mela",
       "nation": "IT",
@@ -12958,7 +12958,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-milano",
+      "id": "circ:it-milano",
       "litcal_id": "milano_it",
       "name": "Arcidiocesi di Milano",
       "nation": "IT",
@@ -12974,7 +12974,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-modena-nonantola",
+      "id": "circ:it-modena-nonantola",
       "litcal_id": "modnon_it",
       "name": "Arcidiocesi di Modena - Nonantola",
       "nation": "IT",
@@ -12998,7 +12998,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-monreale",
+      "id": "circ:it-monreale",
       "litcal_id": "monrea_it",
       "name": "Arcidiocesi di Monreale",
       "nation": "IT",
@@ -13038,7 +13038,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-napoli",
+      "id": "circ:it-napoli",
       "litcal_id": "napoli_it",
       "name": "Arcidiocesi di Napoli",
       "nation": "IT",
@@ -13135,7 +13135,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-oristano",
+      "id": "circ:it-oristano",
       "litcal_id": "orista_it",
       "name": "Arcidiocesi di Oristano",
       "nation": "IT",
@@ -13159,7 +13159,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-otranto",
+      "id": "circ:it-otranto",
       "litcal_id": "otrant_it",
       "name": "Arcidiocesi di Otranto",
       "nation": "IT",
@@ -13183,7 +13183,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-palermo",
+      "id": "circ:it-palermo",
       "litcal_id": "palerm_it",
       "name": "Arcidiocesi di Palermo",
       "nation": "IT",
@@ -13223,7 +13223,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-perugia-citta-della-pieve",
+      "id": "circ:it-perugia-citta-della-pieve",
       "litcal_id": "pecidp_it",
       "name": "Arcidiocesi di Perugia - Città della Pieve",
       "nation": "IT",
@@ -13231,7 +13231,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-pesaro",
+      "id": "circ:it-pesaro",
       "litcal_id": "pesaro_it",
       "name": "Arcidiocesi di Pesaro",
       "nation": "IT",
@@ -13239,7 +13239,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-pescara-penne",
+      "id": "circ:it-pescara-penne",
       "litcal_id": "pespen_it",
       "name": "Arcidiocesi di Pescara - Penne",
       "nation": "IT",
@@ -13279,7 +13279,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-pisa",
+      "id": "circ:it-pisa",
       "litcal_id": "pisasi_it",
       "name": "Arcidiocesi di Pisa",
       "nation": "IT",
@@ -13319,7 +13319,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-potenza-muro-lucano-marsico-nuovo",
+      "id": "circ:it-potenza-muro-lucano-marsico-nuovo",
       "litcal_id": "pomlmn_it",
       "name": "Arcidiocesi di Potenza - Muro Lucano - Marsico Nuovo",
       "nation": "IT",
@@ -13351,7 +13351,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-ravenna-cervia",
+      "id": "circ:it-ravenna-cervia",
       "litcal_id": "ravcer_it",
       "name": "Arcidiocesi di Ravenna - Cervia",
       "nation": "IT",
@@ -13359,7 +13359,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-reggio-calabria-bova",
+      "id": "circ:it-reggio-calabria-bova",
       "litcal_id": "recabo_it",
       "name": "Arcidiocesi di Reggio Calabria - Bova",
       "nation": "IT",
@@ -13399,7 +13399,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-rossano-cariati",
+      "id": "circ:it-rossano-cariati",
       "litcal_id": "roscar_it",
       "name": "Arcidiocesi di Rossano - Cariati",
       "nation": "IT",
@@ -13415,7 +13415,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-salerno-campagna-acerno",
+      "id": "circ:it-salerno-campagna-acerno",
       "litcal_id": "sacaac_it",
       "name": "Arcidiocesi di Salerno - Campagna - Acerno",
       "nation": "IT",
@@ -13471,7 +13471,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-sant-angelo-dei-lombardi-conza-nusco-bisaccia",
+      "id": "circ:it-sant-angelo-dei-lombardi-conza-nusco-bisaccia",
       "litcal_id": "sadlcn_it",
       "name": "Arcidiocesi di Sant'Angelo dei Lombardi - Conza - Nusco - Bisaccia",
       "nation": "IT",
@@ -13487,7 +13487,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-sassari",
+      "id": "circ:it-sassari",
       "litcal_id": "sassar_it",
       "name": "Arcidiocesi di Sassari",
       "nation": "IT",
@@ -13519,7 +13519,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-siena-colle-di-val-d-elsa-montalcino",
+      "id": "circ:it-siena-colle-di-val-d-elsa-montalcino",
       "litcal_id": "scdvde_it",
       "name": "Arcidiocesi di Siena - Colle di Val d'Elsa - Montalcino",
       "nation": "IT",
@@ -13527,7 +13527,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-siracusa",
+      "id": "circ:it-siracusa",
       "litcal_id": "siracu_it",
       "name": "Arcidiocesi di Siracusa",
       "nation": "IT",
@@ -13543,7 +13543,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-sorrento-castellammare-di-stabia",
+      "id": "circ:it-sorrento-castellammare-di-stabia",
       "litcal_id": "socads_it",
       "name": "Arcidiocesi di Sorrento - Castellammare di Stabia",
       "nation": "IT",
@@ -13551,7 +13551,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-spoleto-norcia",
+      "id": "circ:it-spoleto-norcia",
       "litcal_id": "sponor_it",
       "name": "Arcidiocesi di Spoleto - Norcia",
       "nation": "IT",
@@ -13583,7 +13583,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-taranto",
+      "id": "circ:it-taranto",
       "litcal_id": "tarant_it",
       "name": "Arcidiocesi di Taranto",
       "nation": "IT",
@@ -13647,7 +13647,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-torino",
+      "id": "circ:it-torino",
       "litcal_id": "torino_it",
       "name": "Arcidiocesi di Torino",
       "nation": "IT",
@@ -13663,7 +13663,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-trani-barletta-bisceglie",
+      "id": "circ:it-trani-barletta-bisceglie",
       "litcal_id": "trbabi_it",
       "name": "Arcidiocesi di Trani - Barletta - Bisceglie",
       "nation": "IT",
@@ -13679,7 +13679,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-trento",
+      "id": "circ:it-trento",
       "litcal_id": "trento_it",
       "name": "Arcidiocesi di Trento",
       "nation": "IT",
@@ -13727,7 +13727,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-udine",
+      "id": "circ:it-udine",
       "litcal_id": "udinen_it",
       "name": "Arcidiocesi di Udine",
       "nation": "IT",
@@ -13743,7 +13743,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-urbino-urbania-sant-angelo-in-vado",
+      "id": "circ:it-urbino-urbania-sant-angelo-in-vado",
       "litcal_id": "uusaiv_it",
       "name": "Arcidiocesi di Urbino - Urbania - Sant'Angelo in Vado",
       "nation": "IT",
@@ -13783,7 +13783,7 @@
       "type": null
     },
     {
-      "id": "circ:it-arcidiocesi-di-vercelli",
+      "id": "circ:it-vercelli",
       "litcal_id": "vercel_it",
       "name": "Arcidiocesi di Vercelli",
       "nation": "IT",
