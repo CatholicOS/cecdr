@@ -80,7 +80,7 @@ def main():
                 "litcal_id": dio["diocese_id"],
                 "name": over.get("name", dio["diocese_name"]),
                 "nation": over["nation"] if "nation" in over else iso.upper(),
-                "church_sui_iuris": "latin",
+                "church_sui_iuris": "esi:latin",
                 "type": over.get("type"),
             }
             if dio.get("province"):
@@ -97,6 +97,11 @@ def main():
     known = {t["id"] for t in json.load(open(types_path, encoding="utf-8"))["entries"]}
     unknown = {e["type"] for e in entries if e["type"] and e["type"] not in known}
     assert not unknown, f"unknown circumscription types: {sorted(unknown)}"
+    # `church_sui_iuris` is a cross-reference into the CESIDR, a separate
+    # repository, so it can only be checked for shape here.
+    bad = {e["church_sui_iuris"] for e in entries
+           if not str(e["church_sui_iuris"]).startswith("esi:")}
+    assert not bad, f"church_sui_iuris values missing the esi: prefix: {sorted(bad)}"
     out = {
         "$comment": "CECDR seed registry: draft canonical IDs for Catholic "
                     "ecclesiastical circumscriptions, generated from the "

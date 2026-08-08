@@ -29,10 +29,12 @@ circ:<iso3166-1-alpha2>-<slug>
    the successor; **suppressed** circumscriptions keep their IDs and are flagged, never
    deleted — historical data must remain referenceable.
 4. **Eastern circumscriptions** follow the same scheme; the church sui iuris is an
-   attribute (`church_sui_iuris`: e.g. `latin`, `ukrainian`, `maronite`,
-   `syro-malabar`), and where an eparchy shares a city with a Latin see the slug is
-   qualified by the church: `circ:us-philadelphia` (Latin),
-   `circ:us-philadelphia-ukrainian` (archeparchy).
+   attribute, carried as a cross-reference into the CESIDR (`church_sui_iuris`:
+   `esi:latin`, `esi:ukrainian`, `esi:maronite`, `esi:syro-malabar`), and where an
+   eparchy shares a city with a Latin see the slug is qualified by the church:
+   `circ:us-philadelphia` (Latin), `circ:us-philadelphia-ukrainian` (archeparchy).
+   The slug qualifier stays bare — `-ukrainian`, not `-esi-ukrainian` — since it is
+   part of an identifier, not a reference.
 5. **Supranational and extraterritorial structures** (e.g. personal prelatures,
    ordinariates for Eastern faithful covering several nations) use the reserved
    first segment `int` in place of a country code: `circ:int-opus-dei`. `int` is not
@@ -50,7 +52,7 @@ circ:<iso3166-1-alpha2>-<slug>
   "name": "Archdiocese of Boston",
   "nation": "US",
   "province": "Massachusetts",
-  "church_sui_iuris": "latin",
+  "church_sui_iuris": "esi:latin",
   "type": "ctype:archdiocese"
 }
 ```
@@ -79,6 +81,24 @@ every `type` resolves against the types registry.
 
 The `ctype:` prefix is a placeholder on the same footing as `circ:`, pending the
 namespace coordination in open question 1.
+
+## Churches sui iuris
+
+`church_sui_iuris` is likewise a cross-reference, but into a separate repository —
+the [CESIDR](https://github.com/CatholicOS/cesidr), which mints `esi:` IDs for the
+24 Churches *sui iuris*: the Latin Church and the 23 Eastern Catholic Churches.
+
+```json
+"church_sui_iuris": "esi:latin"
+```
+
+The CESIDR slugs were chosen to match the bare values this field already carried
+(`latin`, `ukrainian`, `maronite`, `syro-malabar`), so the migration was a prefix
+and nothing else — no value was renamed and no entry changed meaning.
+
+Because the target registry is a different repository, `scripts/generate_seed.py`
+can only check the shape of these values, not resolve them. Cross-repository
+resolution is a question for the committee alongside the prefix decision.
 
 ## Further attributes
 

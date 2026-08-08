@@ -31,6 +31,11 @@ Examples: `circ:us-boston`, `circ:it-roma`, `circ:al-shkodre-pult`, `circ:us-por
 - [`docs/schema-proposal.md`](docs/schema-proposal.md) — the proposed schema and the open questions for the committee.
 - [`scripts/generate_seed.py`](scripts/generate_seed.py) — regenerates the seed from the API's `world_dioceses.json`.
 
+## Companion registries
+
+- [CESIDR](https://github.com/CatholicOS/cesidr) — the 24 Churches *sui iuris*. Each circumscription's `church_sui_iuris` field is an `esi:` cross-reference into it (`"church_sui_iuris": "esi:latin"`).
+- [`data/circumscription_types.json`](data/circumscription_types.json) — canonical ranks, referenced by each circumscription's `type` field.
+
 ## Sources
 
 The seed derives from the [Liturgical Calendar API](https://github.com/Liturgical-Calendar/LiturgicalCalendarAPI) (Apache-2.0). Enrichment sources under consideration: the Annuario Pontificio (the authoritative reference), and the public databases of [GCatholic](https://gcatholic.org/) and [Catholic-Hierarchy](https://www.catholic-hierarchy.org/) (as verification aids; their compiled data is not incorporated wholesale).
