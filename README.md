@@ -29,7 +29,8 @@ Examples: `circ:us-boston`, `circ:it-roma`, `circ:al-shkodre-pult`, `circ:us-por
 - [`data/circumscriptions.json`](data/circumscriptions.json) — the seed registry: 2,935 Latin-rite circumscriptions across 203 countries, generated from the Liturgical Calendar API's world dioceses index, each with its draft canonical ID, the API's `diocese_id` as a cross-reference key, name, nation, and (where available) civil province.
 - [`data/circumscription_types.json`](data/circumscription_types.json) — the companion types registry: draft canonical IDs (`ctype:diocese`, `ctype:archeparchy`, `ctype:territorial-abbacy`, …) for the 16 canonical ranks and juridic forms a circumscription can hold, each with its Latin name, the church it belongs to, whether it is territorial, the title of the one who governs it, and the governing canon. Each circumscription's `type` field is a cross-reference into this file.
 - [`docs/schema-proposal.md`](docs/schema-proposal.md) — the proposed schema and the open questions for the committee.
-- [`scripts/generate_seed.py`](scripts/generate_seed.py) — regenerates the seed from the API's `world_dioceses.json`.
+- [`scripts/generate_seed.py`](scripts/generate_seed.py) — regenerates the seed from the API's `world_dioceses.json`, validating every identifier and cross-reference before writing.
+- [`scripts/test_generate_seed.py`](scripts/test_generate_seed.py) — unit tests: `python3 -m unittest discover -s scripts -v`.
 
 ## Companion registries
 
