@@ -53,6 +53,44 @@ def slugify(name):
     return s
 
 
+# A `church_sui_iuris` value is a cross-reference into the CESIDR, a separate
+# repository, so it can only be checked for shape here — the bare prefix `esi:`
+# resolves to nothing and must not pass.
+CHURCH_SUI_IURIS = re.compile(r"esi:[a-z0-9]+(-[a-z0-9]+)*")
+
+
+def validate(entries, known_types):
+    """Raise ValueError describing every problem found in `entries`.
+
+    Deliberately not `assert`: Python strips assertions under -O, which would
+    let the generator write unresolvable cross-references and exit 0. Every
+    problem is collected so that repairing seed data does not take one run per
+    error.
+    """
+    problems = []
+
+    ids = [e["id"] for e in entries]
+    dupes = sorted({i for i in ids if ids.count(i) > 1})
+    if dupes:
+        problems.append(f"duplicate ids: {dupes[:10]}")
+
+    # Every `type` is a cross-reference into data/circumscription_types.json;
+    # a typo there would silently produce an unresolvable reference. A null
+    # `type` is expected — the seed is untyped pending an authoritative pass.
+    unknown = sorted({e["type"] for e in entries
+                      if e["type"] and e["type"] not in known_types})
+    if unknown:
+        problems.append(f"unknown circumscription types: {unknown}")
+
+    bad = sorted({str(e["church_sui_iuris"]) for e in entries
+                  if not CHURCH_SUI_IURIS.fullmatch(str(e["church_sui_iuris"]))})
+    if bad:
+        problems.append(f"malformed church_sui_iuris references: {bad}")
+
+    if problems:
+        raise ValueError("; ".join(problems))
+
+
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -88,21 +126,12 @@ def main():
             if over.get("note"):
                 entry["note"] = over["note"]
             entries.append(entry)
-    ids = [e["id"] for e in entries]
-    dupes = {i for i in ids if ids.count(i) > 1}
-    assert not dupes, f"duplicate ids: {sorted(dupes)[:10]}"
-    # Every `type` is a cross-reference into data/circumscription_types.json;
-    # a typo there would silently produce an unresolvable reference.
     types_path = repo_root / "data" / "circumscription_types.json"
     known = {t["id"] for t in json.load(open(types_path, encoding="utf-8"))["entries"]}
-    unknown = {e["type"] for e in entries if e["type"] and e["type"] not in known}
-    assert not unknown, f"unknown circumscription types: {sorted(unknown)}"
-    # `church_sui_iuris` is a cross-reference into the CESIDR, a separate
-    # repository, so it can only be checked for shape here.
-    bad = {e["church_sui_iuris"] for e in entries
-           if not re.fullmatch(r"esi:[a-z0-9]+(-[a-z0-9]+)*",
-                               str(e["church_sui_iuris"]))}
-    assert not bad, f"malformed church_sui_iuris references: {sorted(bad)}"
+    try:
+        validate(entries, known)
+    except ValueError as exc:
+        sys.exit(f"generate_seed.py: {exc}")
     out = {
         "$comment": "CECDR seed registry: draft canonical IDs for Catholic "
                     "ecclesiastical circumscriptions, generated from the "
