@@ -100,8 +100,9 @@ def main():
     # `church_sui_iuris` is a cross-reference into the CESIDR, a separate
     # repository, so it can only be checked for shape here.
     bad = {e["church_sui_iuris"] for e in entries
-           if not str(e["church_sui_iuris"]).startswith("esi:")}
-    assert not bad, f"church_sui_iuris values missing the esi: prefix: {sorted(bad)}"
+           if not re.fullmatch(r"esi:[a-z0-9]+(-[a-z0-9]+)*",
+                               str(e["church_sui_iuris"]))}
+    assert not bad, f"malformed church_sui_iuris references: {sorted(bad)}"
     out = {
         "$comment": "CECDR seed registry: draft canonical IDs for Catholic "
                     "ecclesiastical circumscriptions, generated from the "
