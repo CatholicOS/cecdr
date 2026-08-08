@@ -5,8 +5,10 @@
 
 import copy
 import json
+import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -99,14 +101,20 @@ class SurvivesOptimizedMode(unittest.TestCase):
         return subprocess.run([sys.executable, *flags, "-c", code],
                               capture_output=True, text=True)
 
-    def test_guards_still_raise_under_dash_O(self):
-        entry = {"id": "circ:xx-a", "type": None, "church_sui_iuris": "esi:"}
-        snippet = "gs.validate([%r], set())" % entry
-        for flags in ([], ["-O"], ["-OO"]):
-            with self.subTest(flags=flags or ["(none)"]):
-                result = self.run_validate(flags, snippet)
-                self.assertNotEqual(result.returncode, 0)
-                self.assertIn("ValueError", result.stderr)
+    def test_every_guard_still_raises_under_dash_O(self):
+        ok = {"id": "circ:xx-a", "type": None, "church_sui_iuris": "esi:latin"}
+        cases = {
+            "duplicate id": ([ok, dict(ok)], "set()"),
+            "unknown type": ([dict(ok, type="ctype:bogus")], "set()"),
+            "malformed esi": ([dict(ok, church_sui_iuris="esi:")], "set()"),
+        }
+        for name, (entries, known) in cases.items():
+            snippet = "gs.validate(%r, %s)" % (entries, known)
+            for flags in ([], ["-O"], ["-OO"]):
+                with self.subTest(guard=name, flags=flags or ["(none)"]):
+                    result = self.run_validate(flags, snippet)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn("ValueError", result.stderr)
 
     def test_valid_input_passes_under_dash_O(self):
         entry = {"id": "circ:xx-a", "type": None, "church_sui_iuris": "esi:latin"}
@@ -114,6 +122,82 @@ class SurvivesOptimizedMode(unittest.TestCase):
         result = self.run_validate(["-O"], snippet)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout.strip(), "ok")
+
+
+class MainRefusesToWrite(unittest.TestCase):
+    """main() must abort *before* writing, not merely detect the problem.
+
+    The #11 regression was end-to-end: exit 0 plus a corrupted seed on disk.
+    validate() raising is necessary but not sufficient, so these drive main()
+    against a synthetic source and assert the output file is never created.
+    """
+
+    def build(self, dioceses):
+        tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        repo = tmp / "repo"
+        (repo / "data").mkdir(parents=True)
+        shutil.copy(TYPES, repo / "data" / "circumscription_types.json")
+        src = tmp / "world_dioceses.json"
+        src.write_text(json.dumps({"catholic_dioceses_latin_rite": [
+            {"country_iso": "xx", "country_name_english": "Testland",
+             "dioceses": dioceses}]}), encoding="utf-8")
+        return src, repo, repo / "data" / "circumscriptions.json"
+
+    def run_main(self, flags, src, repo, inject=""):
+        code = ("import sys; sys.path.insert(0, %r); import generate_seed as gs; %s"
+                "sys.argv = ['generate_seed.py', %r, %r]; gs.main()"
+                % (str(SCRIPTS), inject, str(src), str(repo)))
+        return subprocess.run([sys.executable, *flags, "-c", code],
+                              capture_output=True, text=True)
+
+    ALPHA_BETA = [{"diocese_name": "Alpha", "diocese_id": "alpha_xx"},
+                  {"diocese_name": "Beta", "diocese_id": "beta_xx"}]
+    # Two sees of the same name with no province: the generator cannot qualify
+    # them, so both collapse onto circ:xx-alpha.
+    HOMONYMS = [{"diocese_name": "Alpha", "diocese_id": "alpha1_xx"},
+                {"diocese_name": "Alpha", "diocese_id": "alpha2_xx"}]
+
+    def test_writes_when_input_is_sound(self):
+        for flags in ([], ["-O"], ["-OO"]):
+            with self.subTest(flags=flags or ["(none)"]):
+                src, repo, out = self.build(self.ALPHA_BETA)
+                result = self.run_main(flags, src, repo)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertTrue(out.exists())
+                self.assertEqual(
+                    json.loads(out.read_text(encoding="utf-8"))["entry_count"], 2)
+
+    def test_duplicate_ids_abort_before_writing(self):
+        for flags in ([], ["-O"], ["-OO"]):
+            with self.subTest(flags=flags or ["(none)"]):
+                src, repo, out = self.build(self.HOMONYMS)
+                result = self.run_main(flags, src, repo)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("duplicate ids", result.stderr)
+                self.assertFalse(out.exists(), "seed was written despite bad input")
+
+    def test_unknown_type_aborts_before_writing(self):
+        inject = "gs.MANUAL['alpha_xx'] = {'type': 'ctype:bogus'}; "
+        for flags in ([], ["-O"], ["-OO"]):
+            with self.subTest(flags=flags or ["(none)"]):
+                src, repo, out = self.build(self.ALPHA_BETA)
+                result = self.run_main(flags, src, repo, inject)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("ctype:bogus", result.stderr)
+                self.assertFalse(out.exists(), "seed was written despite bad input")
+
+    def test_an_existing_seed_is_left_untouched_on_failure(self):
+        src, repo, out = self.build(self.HOMONYMS)
+        out.write_text("SENTINEL", encoding="utf-8")
+        result = self.run_main(["-O"], src, repo)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(out.read_text(encoding="utf-8"), "SENTINEL")
+
+    # `church_sui_iuris` has no main()-level counterpart: the value is a literal
+    # in main() and no source input or MANUAL override can reach it, so it is
+    # unreachable end-to-end by construction. It is covered at the validate()
+    # level in SurvivesOptimizedMode instead.
 
 
 class Slugify(unittest.TestCase):
